@@ -23,7 +23,7 @@ function App() {
   }, []);
   return (
     <main className="text-[#FEF7EE]">
-      {/* {loading && <Preloader />} */}
+      {loading && <Preloader />} 
       <Suspense fallback={<Preloader />}>
         <Banner />
         <div className="xl:w-[1000px] w-5/6 bg-[#1B1D1F] mx-auto z-10 rounded-xl mt-[-140px] relative py-[70px] flex flex-col items-center">
