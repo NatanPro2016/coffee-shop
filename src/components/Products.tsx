@@ -1,11 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import contents from "../contents.json";
 import { motion } from "framer-motion";
+interface contentType {
+  id: number;
+  name: string;
+  image: string;
+  price: string;
+  rating: number;
+  votes: number;
+  popular: boolean;
+  available: boolean;
+}
 
-const Products = () => {
+const Products = ({ selected}: {selected:string}) => {
+  const [filterd, setFilted] = useState<any>([]);
+  useEffect(() => {
+    if (selected == "available") {
+      setFilted(contents.filter((content) => content.available));
+    } else {
+      setFilted(contents);
+    }
+  }, [selected]);
+
   return (
     <div className="grid xl:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-8 mt-6 place-items-center">
-      {contents.map((content) => (
+      {filterd.map((content: contentType) => (
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
